@@ -1,6 +1,5 @@
 package com.soufiane.service;
 
-import com.soufiane.model.Employee;
 import com.soufiane.model.Post;
 import com.soufiane.repositrory.PostRepository;
 import jakarta.transaction.Transactional;
