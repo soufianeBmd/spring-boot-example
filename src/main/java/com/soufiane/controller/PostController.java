@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/post")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PostController {
     private final PostService postService;
 
@@ -39,5 +40,11 @@ public class PostController {
     public ResponseEntity<Post> updatePost(@RequestBody Post post){
         Post updatePost = postService.updatePost(post);
         return new ResponseEntity<>(updatePost, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable("id") Integer id){
+        postService.deletePost(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

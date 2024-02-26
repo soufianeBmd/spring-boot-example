@@ -31,4 +31,8 @@ public class ContratService {
     public Contrat updateContrat (Contrat contrat){
         return contratRepository.save(contrat);
     }
+
+    public void deleteContrat(Integer id) {
+        contratRepository.deleteContratById(id);
+    }
 }

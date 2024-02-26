@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contrat")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ContratController {
     private final ContratService contratService;
 
@@ -39,5 +40,11 @@ public class ContratController {
     public ResponseEntity<Contrat> updateContrat(@RequestBody Contrat contrat){
         Contrat updateContrat= contratService.updateContrat(contrat);
         return new ResponseEntity<>(contrat, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Integer id){
+        contratService.deleteContrat(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
