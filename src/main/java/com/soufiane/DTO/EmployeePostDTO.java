@@ -1,16 +1,15 @@
-package com.soufiane.model;
+package com.soufiane.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class EtudierKey implements Serializable {
-    private Integer employee;
-    private Integer etude;
+public class EmployeePostDTO {
+    private String nom;
+    private Integer salaireAnnuelle;
 }

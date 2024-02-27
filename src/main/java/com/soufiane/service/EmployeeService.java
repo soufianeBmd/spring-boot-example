@@ -1,10 +1,12 @@
 package com.soufiane.service;
 
+import com.soufiane.DTO.EmployeePostDTO;
 import com.soufiane.model.Employee;
 import com.soufiane.repositrory.EmployeeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,8 +22,8 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee findEmployee(Integer id){
-        return employeeRepository.findEmployeeById(id);
+    public Employee findEmployeeById(Integer id){
+        return employeeRepository.findById(id).orElse(null);
     }
 
     public Employee addEmployee (Employee employee){
@@ -32,7 +34,21 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
     public void deleteEmployee(Integer id){
-        employeeRepository.deleteEmployeeById(id);
+        if (findEmployeeById(id)!=null) {
+            employeeRepository.deleteById(id);
+        }
+    }
+
+    public List<EmployeePostDTO> getAnnualSalary(){
+        List<Object[]> counts = employeeRepository.annualSalary();
+        List<EmployeePostDTO> result = new ArrayList<>();
+        for (Object[] row: counts){
+            EmployeePostDTO employeePostDTO = new EmployeePostDTO();
+            employeePostDTO.setNom((String) row[0]);
+            employeePostDTO.setSalaireAnnuelle((Integer) row[1]);
+            result.add(employeePostDTO);
+        }
+        return result;
     }
 
 }
