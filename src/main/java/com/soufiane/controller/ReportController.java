@@ -2,6 +2,7 @@ package com.soufiane.controller;
 
 
 import com.soufiane.DTO.ContratEmployeeDTO;
+import com.soufiane.DTO.EmployeeContratDTO;
 import com.soufiane.DTO.EmployeePostDTO;
 import com.soufiane.DTO.PosteEmployesDTO;
 import com.soufiane.service.ContratService;
@@ -37,6 +38,11 @@ public class ReportController {
     @GetMapping("/employee-contrat/{annee}")
     public List<ContratEmployeeDTO> getNbEmployeeByContrat(@PathVariable("annee") Integer annee){
         return contratService.getNbContratByEmployee(annee);
+    }
+
+    @GetMapping("/details")
+    public List<EmployeeContratDTO> getContratDetails(){
+        return contratService.getContratDetails();
     }
 
 }
